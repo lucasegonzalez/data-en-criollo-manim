@@ -45,16 +45,22 @@ Qué es: curso GRATIS de Harvard "CS50's Introduction to Programming with R"
 (instructores Carter Zenke y David Malan). Nuestro video es una review-explicación
 en español LATAM: "cómo atravesar los 6 problem sets y qué se aprende de verdad".
 
+IMPORTANTE: CS50R es una serie INDEPENDIENTE de la demo del restaurante que está
+en este repo. NO mezclar personajes ni historias de otras piezas (ej. Camilo y su
+restaurante pertenecen a otra serie). El anclaje de esta pieza es el cold open
+real del guion PS1: "ese tipo soy yo", la voz del canal.
+
 CONCEPTO RECTOR de la Semana 1 (la tesis que debe quedar clara):
 **"TODO en R es un vector."** Un número es un vector de 1 elemento; una columna de
 Excel es un vector de muchos; un data frame es una LISTA DE VECTORES DEL MISMO
 LARGO. Excel piensa en celdas; R opera sobre el vector completo, sin loops.
 
-### La escena a crear: "El ticket de Camilo" (60-90s)
+### La escena a crear: "El ticket de las 47 compras" (60-90s)
 
-Historia (cold open del guion, en clave marca): Camilo, Buenos Aires, compró
+Historia (cold open del guion, en clave marca): un tipo en Buenos Aires compró
 47 cosas online (MercadoLibre, Amazon, el super del barrio) y no sabía cuánto
-gastó hasta que llegó la tarjeta. La visualización le explica a R cómo pensarlo.
+gastó hasta que llegó la tarjeta — ese tipo soy yo. La visualización le explica
+a R cómo pensarlo.
 
 Secuencia de la escena (respetá este arco narrativo):
 1. **El ticket**: un ticket de super arrugado (papel crema, tinta, tipografía mono)
@@ -65,7 +71,8 @@ Secuencia de la escena (respetá este arco narrativo):
    Punchline seca en pantalla: "47 cosas. Una sola cosa para R."
 4. **Se alinean** las 47 cajitas; un arco OLIVA #7A8C5A las envuelve →
    `sum(vector)` de una sola pasada. Mostrar el resultado: el total que no
-   sabía Camilo (inventá un total realista en ARS, ej. "$187.400").
+   sabía el tipo de las 47 compras (inventá un total realista en ARS,
+   ej. "$187.400").
 5. **El ticket se convierte en data frame**: columnas `item · cantidad · precio`
    aparecen como cabecera de tabla; cada columna se ILUMINA ENTERA y aparece
    `$` + nombre de columna → "de la tabla, traeme la columna" (concepto del
@@ -84,8 +91,7 @@ ejercicio real del PS1:
 - Pattern interrupt (picardía): `max(time)` → "Error: object 'time' not found"
   con glitch, y una flecha que muestra `datos$time` → "ACORDATE DEL DÓLAR"
   (el error que el curso dice que vas a ver 50 veces).
-- Paralelismo criollo que cierra: "Camilo cerraba la caja del restaurante los
-  domingos a la noche. Con 4 líneas, lo hace antes de que se enfríe el café."
+- Cierre comparativo: "En Excel te lleva 10 minutos y 4 fórmulas. En R, 4 líneas."
 
 Decisiones de diseño:
 - La escena del ticket puede ser 2D (es más un dato de negocio que un concepto
