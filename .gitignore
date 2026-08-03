@@ -1,0 +1,11 @@
+# Renders y previews (regenerables)
+media/
+*.mp4
+*.gif
+
+# Python
+__pycache__/
+*.pyc
+
+# macOS
+.DS_Store
