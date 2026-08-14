@@ -31,6 +31,17 @@ FONT_DISPLAY = "Playfair Display"  # display / acento, italic + 900
 FONT_CUERPO = "Source Serif 4"   # cuerpo
 FONT_MONO = "Cutive Mono"        # datos, labels ALL CAPS
 
+# --- Modo oscuro (inversion semantica; acentos aclarados para legibilidad) ---
+DARK_BG = TINTA           # --bg: var(--tinta)
+DARK_FG = PAPEL           # --fg: var(--papel)
+DARK_FG_MED = PAPEL2      # --fg-secondary: var(--papel2)
+DARK_RAISED = TINTA_MED   # --bg-raised: var(--tintaMed)
+DARK_BORDER = PAPEL       # --border: var(--papel)
+DARK_TERRACOTA = "#D6452F"  # terracota aclarado (Signal Red, una vez por pieza)
+DARK_MOSTAZA = "#E0A250"    # segundo acento, highlights
+DARK_OLIVA = "#A8BE8A"      # positivo / confirmacion (legible sobre oscuro)
+DARK_BURDEOS = "#C25B28"    # precios, enfasis calido (legible sobre oscuro)
+
 # --- Reglas de composicion ---
 FILETE_H = 0.12                  # filete de marca: 3px terracota + 1px tinta (escala config)
 TRACKING_LABEL = 0.22            # letter-spacing labels (em)

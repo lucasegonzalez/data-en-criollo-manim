@@ -8,6 +8,9 @@ Crea:
   assets/blip_col.wav     -> blip de crecimiento de columna (bajo, corto)
   assets/blip_prota.wav   -> blip de iluminacion de protagonista (medio)
   assets/blip_cierre.wav  -> blip de cierre (largo, grave)
+  assets/blip_pop.wav     -> pop corto y agudo (cajita individual, headers)
+  assets/blip_burst.wav   -> rafaga en cascada (desarme del ticket, 12 pops)
+  assets/blip_sum.wav     -> doble campanita ascendente (revelacion del total)
 """
 
 import os
@@ -51,11 +54,39 @@ def generar_blip(path: str, freq: float, dur: float, amp: float, decay: float) -
     print("ok:", path)
 
 
+def generar_rafaga(path: str, pops: int, dur: float, f0: float, paso: float) -> None:
+    """Cascada de pops sinteticos ascendentes (una sola muestra).
+
+    Cada pop es un pulso corto con ataque rapido y decay; los pops arrancan
+    escalonados en el tiempo con frecuencia creciente (efecto "desarme").
+    """
+    n = int(dur * SR)
+    t = np.linspace(0, dur, n, False)
+    seg = np.zeros(n, np.float32)
+    for i in range(pops):
+        t0 = i * (dur / pops)
+        local = t - t0
+        mask = (local >= 0).astype(np.float32)
+        env = np.exp(-local * 110.0) * (1 - np.exp(-local * 450.0)) * mask
+        seg += 0.30 * np.sin(2 * np.pi * (f0 + i * paso) * local) * env
+    seg = np.clip(seg, -1, 1).astype(np.float32)
+    pcm = (seg * 32767).astype(np.int16)
+    with wave.open(path, "wb") as w:
+        w.setnchannels(1)
+        w.setsampwidth(2)
+        w.setframerate(SR)
+        w.writeframes(pcm.tobytes())
+    print("ok:", path)
+
+
 def main() -> None:
     generar_grain(os.path.join(ASSETS, "papel_grain.png"))
     generar_blip(os.path.join(ASSETS, "blip_col.wav"), 180, 0.35, 0.5, 10.0)
     generar_blip(os.path.join(ASSETS, "blip_prota.wav"), 330, 0.60, 0.5, 6.0)
     generar_blip(os.path.join(ASSETS, "blip_cierre.wav"), 220, 1.40, 0.45, 3.0)
+    generar_blip(os.path.join(ASSETS, "blip_pop.wav"), 640, 0.10, 0.42, 30.0)
+    generar_rafaga(os.path.join(ASSETS, "blip_burst.wav"), pops=12, dur=0.6, f0=320, paso=55)
+    generar_rafaga(os.path.join(ASSETS, "blip_sum.wav"), pops=2, dur=0.8, f0=440, paso=220)
 
 
 if __name__ == "__main__":
